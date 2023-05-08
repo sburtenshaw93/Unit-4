@@ -15,6 +15,14 @@ class User(db.Model):
     def __init__(self, username, password):
         self.username = username
         self.password = password
+        
+    def get_allprojects(self):
+        projects = []
+        
+        for team in self.teams:
+            for project in team.projects:
+                projects.append(project)    
+        return projects        
     
 class Team(db.Model):
     
